@@ -1,6 +1,9 @@
 package com.ttu.RabbitMQ.dto;
 
-public class UserDto {
+import java.io.Serializable;
+import java.util.Objects;
+
+public class UserDto implements Serializable {
     private String name;
     private String email;
     private String city;
@@ -36,5 +39,27 @@ public class UserDto {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDto userDto = (UserDto) o;
+        return Objects.equals(name, userDto.name) && Objects.equals(email, userDto.email) && Objects.equals(city, userDto.city);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, city);
     }
 }

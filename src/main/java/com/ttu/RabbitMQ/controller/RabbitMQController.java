@@ -16,7 +16,7 @@ public class RabbitMQController {
     private RabbitMQProducer rabbitMQProducer;
 
     @PostMapping
-    public byte[] postUser(@RequestBody UserDto userDto)
+    public UserDto postUser(@RequestBody UserDto userDto)
     {
         return rabbitMQProducer.sendMessage(userDto);
     }

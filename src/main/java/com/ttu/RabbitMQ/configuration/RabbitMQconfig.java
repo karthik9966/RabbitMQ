@@ -1,6 +1,7 @@
 package com.ttu.RabbitMQ.configuration;
 
 import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
@@ -45,9 +46,9 @@ public class RabbitMQconfig {
     }
 
     @Bean
-    public AmqpTemplate amqpTemplate()
+    public AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory)
     {
-        RabbitTemplate rabbitTemplate = new RabbitTemplate();
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(messageConverter());
         return rabbitTemplate;
     }
