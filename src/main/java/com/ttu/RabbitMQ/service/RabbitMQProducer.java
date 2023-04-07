@@ -25,12 +25,13 @@ public class RabbitMQProducer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RabbitMQProducer.class);
 
-    public void sendMessage(UserDto userDto)
+    public byte[] sendMessage(UserDto userDto)
     {
         LOGGER.info(userDto.toString());
         byte[] body = SerializationUtils.serialize(userDto);
         Message message = MessageBuilder.withBody(body).build();
         rabbitTemplate.send(exchange,routingKey,message);
+        return body;
     }
 
 }
